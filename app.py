@@ -10,4 +10,5 @@ def csv_to_list(file_path):
 
 
 file_path = "SalesData.csv"  
-fullist = csv_to_list(file_path)
+data = csv_to_list(file_path)
+print(data)
