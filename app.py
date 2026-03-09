@@ -1,17 +1,15 @@
 ## This function opens the CSV for You!
 def csv_to_list(file_path):
     data_list = []
-    
     with open(file_path, 'r') as file:
         for line in file:
             row = line.strip().split(',')
             row = [int(value) if value.isdigit() else value for value in row]
             data_list.append(row)
     return data_list
-
-
 file_path = "SalesData.csv"  
 data = csv_to_list(file_path)
+
 def avgcalc():
     global full_data, avgdata
     avgdata = []
@@ -26,6 +24,7 @@ def avgcalc():
         full_data.append((f"{data[index+1][0]}", item))
     print(full_data)
 avgcalc()
+
 def sort_data():
     sorted_data = []
     numsort = sorted(avgdata)
@@ -35,9 +34,18 @@ def sort_data():
                 sorted_data.append((full_data[x][0], numsort[i]))
     print(sorted_data)
 sort_data()
+
 def allavg():
+    global fullavg
     avgdatasum = sum(avgdata)
     fullavg = avgdatasum/len(avgdata)
     print(f"Full average: {fullavg}")
 allavg()
+
 def underperf():
+    badstores = []
+    for i in range(len(full_data)):
+        if full_data[i][1]/fullavg < 0.80:
+            badstores.append(full_data[i][0])
+    print(badstores)
+underperf()
